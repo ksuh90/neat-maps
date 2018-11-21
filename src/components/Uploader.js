@@ -14,6 +14,10 @@ class Uploader extends React.Component {
         }
     }
 
+    errorHandler = () => {
+        this.setValidationMsg('Something went wrong!');
+    }
+
     setValidationMsg = (s) => {
         let validationMsg = this.state.validationMsg;
         validationMsg = s;
@@ -43,7 +47,10 @@ class Uploader extends React.Component {
         return (
             <div className="container border mt-5">
                 <h1>Upload</h1>
-                <CSVReader onFileLoaded={this.onFileLoaded} />
+                <CSVReader
+                    onFileLoaded={this.onFileLoaded}
+                    onError={this.errorHandler}
+                />
                 <h4 className="text-danger">{this.state.validationMsg}</h4>
           </div>
         );
