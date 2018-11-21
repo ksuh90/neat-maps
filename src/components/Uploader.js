@@ -41,7 +41,7 @@ class Uploader extends React.Component {
     
     render() {
         return (
-            <div className="container">
+            <div className="container border mt-5">
                 <h1>Upload</h1>
                 <CSVReader onFileLoaded={this.onFileLoaded} />
                 <h4 className="text-danger">{this.state.validationMsg}</h4>
