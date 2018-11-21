@@ -5,17 +5,17 @@ class Uploader extends React.Component {
 
     state = {
         validationMsg: '',
-    };
+    }
 
     onFileLoaded = (data) => {
         console.log(data);
-        if (this.verifyFormat(data)) {
-            this.props.setCurrentTable(data);
-        }
+        const table = this.verifyFormat(data) ? data : {};
+        this.props.setCurrentTable(table);
     }
 
     errorHandler = () => {
         this.setValidationMsg('Something went wrong!');
+        this.props.setCurrentTable({});
     }
 
     setValidationMsg = (s) => {
