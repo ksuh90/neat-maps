@@ -19,9 +19,7 @@ class Uploader extends React.Component {
     }
 
     setValidationMsg = (s) => {
-        let validationMsg = this.state.validationMsg;
-        validationMsg = s;
-        this.setState({ validationMsg })
+        this.setState({ validationMsg: s })
     }
 
     verifyFormat = data => {
