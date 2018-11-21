@@ -1,14 +1,14 @@
 import React from 'react';
 
-class ColumnSelector extends React.Component {
+class Normalize extends React.Component {
     
     render() {
         return (
             <div className="container">
-                <h1>ColumnSelector</h1>
+                <h1>Normalize</h1>
             </div>
         );
     }
 }
 
-export default ColumnSelector;
+export default Normalize;

@@ -1,6 +1,6 @@
 import React from 'react';
 import Uploader from './Uploader';
-import ColumnSelector from './ColumnSelector';
+import Normalize from './Normalize';
 import Map from './Map';
 
 class App extends React.Component {
@@ -25,7 +25,7 @@ class App extends React.Component {
         return (
             <div className="container">
                 <Uploader setCurrentTable={this.setCurrentTable} />
-                <ColumnSelector currentTable={this.state.currentTable} addTable={this.addTable} />
+                <Normalize currentTable={this.state.currentTable} addTable={this.addTable} />
                 <Map tables={this.state.tables} />
             </div>
         );
