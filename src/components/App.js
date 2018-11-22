@@ -15,9 +15,9 @@ class App extends React.Component {
         this.setState({ currentTable });
     };
 
-    addTable = (data) => {
+    addTable = (newTable) => {
         let tables = this.state.tables;
-        tables.push(data);
+        tables.push(newTable);
         this.setState({ tables });
     }
 
