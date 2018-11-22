@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import GoogleMapReact from 'google-map-react';
+import ColorHash from 'color-hash';
 import { fitBounds } from 'google-map-react/utils';
 
 class Marker extends React.Component {
     render() {
         return (
             <div style={{
-                color: 'white', 
-                background: 'grey',
+                color: `${this.props.color}`,
+                background: `${this.props.color}`,
                 padding: '5px 5px',
                 display: 'inline-flex',
                 textAlign: 'center',
@@ -99,9 +100,20 @@ class MapIt extends React.Component {
     }
 
     renderMarkers = (entries) => {
+        const colorHash = new ColorHash();
+        const colorMap = {}; // { category : hex }
+
         return entries.map((entry, i) => {
+            if (!colorMap[entry.category]) {
+                colorMap[entry.category] = colorHash.hex(entry.category);
+            }
             return (
-                <Marker key={i} lat={entry.geo.lat} lng={entry.geo.lng} />
+                <Marker
+                    key={i}
+                    lat={entry.geo.lat}
+                    lng={entry.geo.lng}
+                    color={colorMap[entry.category]}
+                />
             );
         });
     }
