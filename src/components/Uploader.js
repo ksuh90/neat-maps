@@ -36,7 +36,7 @@ class Uploader extends React.Component {
 
         if (len > MAX_ROWS) {
             // too many rows
-            this.setValidationMsg('To many rows!');
+            this.setValidationMsg('Too many rows!');
             return false;
         }
 
