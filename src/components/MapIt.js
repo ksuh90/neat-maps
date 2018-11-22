@@ -45,6 +45,11 @@ class MapIt extends React.Component {
         zoom: this.props.defaultZoom
     }
 
+    /**
+     * Calculating northeast and southwest bounds
+     * @param  {array} rows
+     * @return {object}
+     */
     calculateBounds = (rows) => {
         let initLat = rows[0].geo.lat;
         let initLng = rows[0].geo.lng;
@@ -125,8 +130,7 @@ class MapIt extends React.Component {
                         defaultZoom={this.props.defaultZoom}
                         zoom={this.state.zoom}
                     >
-                        {this.state.activeMarkers}
-                    
+                        {this.state.activeMarkers}                    
                     </GoogleMapReact>
                 </div>
             </div>
