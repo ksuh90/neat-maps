@@ -6,6 +6,7 @@
     "react-scripts": "^1.1.4"
   },
   "dependencies": {
+    "color-hash": "^1.0.3",
     "google-map-react": "^1.1.1",
     "prop-types": "^15.6.0",
     "react": "^16.3.0-alpha.1",
