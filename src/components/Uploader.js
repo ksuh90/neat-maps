@@ -1,6 +1,9 @@
 import React from 'react';
 import CSVReader from "react-csv-reader";
 
+const MAX_ROWS = 20;
+const NUM_COLUMNS = 5;
+
 class Uploader extends React.Component {
 
     state = {
@@ -31,8 +34,14 @@ class Uploader extends React.Component {
             return false;
         }
 
+        if (len > MAX_ROWS) {
+            // too many rows
+            this.setValidationMsg('To many rows!');
+            return false;
+        }
+
         for (let i = 0; i < len; i++) {
-            if (data[i].length !== 5) {
+            if (data[i].length !== NUM_COLUMNS) {
                 const msg = `${i+1}th row does not have 5 columns!`;
                 this.setValidationMsg(msg);
                 return false;
