@@ -28,7 +28,7 @@ class App extends React.Component {
             tables.shift();
         }
         const geocodes = await this.getGeocodes(newTable);
-        // Mapp geo codes to the new table
+        // Map geo codes to the new table
         newTable.map((v, i) => {
             v['geo'] = geocodes[i];
             return v;
@@ -57,7 +57,7 @@ class App extends React.Component {
             return data;
         } catch (error) {
             console.log(error);
-            throw (error);
+            return [];
         }
     }
 
