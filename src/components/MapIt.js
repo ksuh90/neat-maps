@@ -9,7 +9,7 @@ class MapIt extends React.Component {
                 <h1>Map It</h1>
                  <div className="mb-5">
                     {this.props.tables.map((v, i) => {
-                        return <button key={i} type="button" className="btn btn-info mr-2">{i}</button>
+                        return <button key={i} type="button" className="btn btn-info mr-2">{i+1}</button>
                     })}
                 </div>
                 <div>
