@@ -1,7 +1,7 @@
 import React from 'react';
 import config from '../config';
 import Uploader from './Uploader';
-import Normalize from './Normalize';
+import Normalizer from './Normalizer';
 import MapIt from './MapIt';
 
 const MAX_TABLES = 3;
@@ -65,7 +65,7 @@ class App extends React.Component {
         return (
             <div className="container">
                 <Uploader setCurrentTable={this.setCurrentTable} />
-                <Normalize currentTable={this.state.currentTable} addTable={this.addTable} />
+                <Normalizer currentTable={this.state.currentTable} addTable={this.addTable} />
                 <MapIt tables={this.state.tables} googleMapsApiKey={config.google_maps_api_key} />
             </div>
         );

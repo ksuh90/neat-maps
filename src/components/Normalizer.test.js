@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow, configure } from 'enzyme';
-import Normalize from './Normalize';
+import Normalizer from './Normalizer';
 import Adapter from 'enzyme-adapter-react-16'
 configure({ adapter: new Adapter() })
 
-describe('Normalize', () => {
+describe('Normalizer', () => {
     
     const unnormalized = [
         ['a', 'b', 'c', 'd', 'e'],
@@ -13,7 +13,7 @@ describe('Normalize', () => {
     describe('normalizeTable', () => {
 
         it('should calculate bounds of given coords', () => {
-            const wrapper = shallow(<Normalize currentTable={unnormalized} />);
+            const wrapper = shallow(<Normalizer currentTable={unnormalized} />);
             const nameToIdx = {
                 ADDRESS: 0,
                 CITY: 1,
@@ -31,14 +31,14 @@ describe('Normalize', () => {
     describe('handleSelectChange', () => {
 
         it('should add entry to state of selectedOptions', () => {
-            const wrapper = shallow(<Normalize currentTable={unnormalized} />);
+            const wrapper = shallow(<Normalizer currentTable={unnormalized} />);
             const e = { target: { value: 'ADDRESS' } };
             wrapper.instance().handleSelectChange(0, e);
             expect(wrapper.state('selectedOptions')[0]).toBe('ADDRESS');
         });
 
         it('should remove entry in state of selectedOptions', () => {
-            const wrapper = shallow(<Normalize currentTable={unnormalized} />);
+            const wrapper = shallow(<Normalizer currentTable={unnormalized} />);
             const e = { target: { value: '0' } };
             wrapper.instance().handleSelectChange(0, e);
             expect(Object.keys(wrapper.state('selectedOptions')).length).toBe(0);
@@ -48,7 +48,7 @@ describe('Normalize', () => {
     describe('handleSubmit', () => {
 
         it('should set an error for submitting with invalid selections', () => {
-            const wrapper = shallow(<Normalize currentTable={unnormalized} />);
+            const wrapper = shallow(<Normalizer currentTable={unnormalized} />);
             wrapper.setState({
                 selectedOptions: {
                     0: 'ADDRESS',

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class Normalize extends React.Component {
+class Normalizer extends React.Component {
 
     state = {
         validationMsg: '',
@@ -107,8 +107,8 @@ class Normalize extends React.Component {
     }
 }
 
-Normalize.propTypes = {
+Normalizer.propTypes = {
     currentTable: PropTypes.array,
 }
 
-export default Normalize;
+export default Normalizer;
