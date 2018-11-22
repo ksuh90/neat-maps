@@ -18,7 +18,11 @@ class Normalize extends React.Component {
 
     handleSelectChange = (idx, e) => {
         const selectedOptions = {...this.state.selectedOptions};
-        selectedOptions[idx] = e.target.value;
+        if (e.target.value === '0') {
+            delete selectedOptions[idx];
+        } else {
+            selectedOptions[idx] = e.target.value;
+        }
         this.setState({ selectedOptions });
     }
 
