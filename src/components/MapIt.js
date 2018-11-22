@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import GoogleMapReact from 'google-map-react';
+import { fitBounds } from 'google-map-react/utils';
 
 class Marker extends React.Component {
     render() {
@@ -21,22 +22,75 @@ class Marker extends React.Component {
 }
 
 class MapIt extends React.Component {
-
-    state = {
-        activeMarkers: []
-    }
-
     static defaultProps = {
-        center: {
+        defaultCenter: {
             // Wichita, Kansas
             lat: 37.697948,
             lng: -97.314835
         },
-        zoom: 4
+        defaultZoom: 4,
+        mapSize: {
+            width: 650,
+            height: 510
+        }
+    }
+
+    state = {
+        // All the Marker components rendered on the map
+        activeMarkers: null,
+
+        // Google map parameters
+        centerLat: this.props.defaultCenter.lat,
+        centerLng: this.props.defaultCenter.lng,
+        zoom: this.props.defaultZoom
+    }
+
+    calculateBounds = (rows) => {
+        let initLat = rows[0].geo.lat;
+        let initLng = rows[0].geo.lng;
+        let neLat = initLat;
+        let neLng = initLng;
+        let swLat = initLat;
+        let swLng = initLng;
+
+        const len = rows.length;
+        for (let i = 0; i < len; i++) {
+            const lat = rows[i].geo.lat;
+            const lng = rows[i].geo.lng;
+            if (lat > neLat) {
+                neLat = lat;
+            } else if (lat < swLat) {
+                swLat = lat;
+            }
+
+            if (lng > neLng) {
+                neLng = lng;
+            } else if (lng < swLng) {
+                swLng = lng;
+            }
+        }
+
+        return {
+            ne: {
+                lat: neLat,
+                lng: neLng
+            },
+            sw: {
+                lat: swLat,
+                lng: swLng
+            }
+        };
     }
 
     handleClick = (i) => {
-        this.setState({ activeMarkers : this.renderMarkers(this.props.tables[i]) });
+        const bounds = this.calculateBounds(this.props.tables[i]);
+        const { center, zoom } = fitBounds(bounds, this.props.mapSize);
+        this.setState({
+            centerLat: center.lat,
+            centerLng: center.lng,
+            zoom: zoom,
+            activeMarkers : this.renderMarkers(this.props.tables[i])
+        });
     }
 
     renderMarkers = (entries) => {
@@ -66,8 +120,10 @@ class MapIt extends React.Component {
                 <div style={{ height: '100vh', width: '100%' }}>
                     <GoogleMapReact
                         bootstrapURLKeys={{ key: this.props.googleMapsApiKey }}
-                        defaultCenter={this.props.center}
-                        defaultZoom={this.props.zoom}
+                        defaultCenter={{ lat: this.props.defaultCenter.lat, lng: this.props.defaultCenter.lng }}
+                        center={{ lat: this.state.centerLat, lng: this.state.centerLng }}
+                        defaultZoom={this.props.defaultZoom}
+                        zoom={this.state.zoom}
                     >
                         {this.state.activeMarkers}
                     
