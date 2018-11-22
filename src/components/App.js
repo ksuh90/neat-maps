@@ -1,7 +1,7 @@
 import React from 'react';
 import Uploader from './Uploader';
 import Normalize from './Normalize';
-import Map from './Map';
+import MapIt from './MapIt';
 
 const MAX_TABLES = 3;
 
@@ -32,7 +32,7 @@ class App extends React.Component {
             <div className="container">
                 <Uploader setCurrentTable={this.setCurrentTable} />
                 <Normalize currentTable={this.state.currentTable} addTable={this.addTable} />
-                <Map tables={this.state.tables} />
+                <MapIt tables={this.state.tables} />
             </div>
         );
     }
