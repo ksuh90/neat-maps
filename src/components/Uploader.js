@@ -42,7 +42,7 @@ class Uploader extends React.Component {
 
         for (let i = 0; i < len; i++) {
             if (data[i].length !== NUM_COLUMNS) {
-                const msg = `${i+1}th row does not have 5 columns!`;
+                const msg = `Row ${i+1} does not have 5 columns!`;
                 this.setValidationMsg(msg);
                 return false;
             }
