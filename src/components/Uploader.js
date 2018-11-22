@@ -9,6 +9,7 @@ class Uploader extends React.Component {
 
     onFileLoaded = (data) => {
         console.log(data);
+        this.props.setCurrentTable([]);
         const table = this.verifyFormat(data) ? data : [];
         this.props.setCurrentTable(table);
     }
