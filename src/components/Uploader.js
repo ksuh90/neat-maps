@@ -37,7 +37,7 @@ class Uploader extends React.Component {
                 return false;
             }
         }
-
+        this.setValidationMsg('');
         return true;
     }
     
