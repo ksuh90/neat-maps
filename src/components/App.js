@@ -3,20 +3,26 @@ import Uploader from './Uploader';
 import Normalize from './Normalize';
 import Map from './Map';
 
+const MAX_TABLES = 3;
+
 class App extends React.Component {
+
     state = {
         currentTable: [],
         tables: [],
-    };
+    }
 
     setCurrentTable = (data) => {
         let currentTable = this.state.currentTable;
         currentTable = data;
         this.setState({ currentTable });
-    };
+    }
 
     addTable = (newTable) => {
         let tables = this.state.tables;
+        if (tables.length >= MAX_TABLES) {
+            tables.shift();
+        }
         tables.push(newTable);
         this.setState({ tables });
     }
