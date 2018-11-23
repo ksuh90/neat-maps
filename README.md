@@ -1,5 +1,10 @@
 # neat-maps
 
+## Specs
+- Nodejs (v9.9.0)
+- React 16
+- Jest, Enzyme for testing
+
 ## How to run
 1. Clone the repository
     ```
@@ -8,13 +13,8 @@
 2. ```$ mv src/config-sample.js src/config.js```
 3. Add google maps api key in src/config.js 
 4. ```$ npm install```
-5. ```$ npm run start```
+5. ```$ npm run start``` _( App is available on localhost:3000 )_
 6. For testing, ```npm run test``` _(If running on OSX, make sure to have watchman installed "brew install watchman")_
-
-## Specs
-- Nodejs (v9.9.0)
-- React 16
-- Jest, Enzyme for testing
 
 ## Description
 The app can be broken down to three main components: Uploader, Normalizer, and the MapIt. 
