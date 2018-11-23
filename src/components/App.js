@@ -3,6 +3,7 @@ import config from '../config';
 import Uploader from './Uploader';
 import Normalizer from './Normalizer';
 import MapIt from './MapIt';
+import Login from './Login';
 
 const MAX_TABLES = 3;
 
@@ -11,8 +12,17 @@ const GOOGLE_MAPS_API = 'https://maps.googleapis.com/maps/api/geocode/json';
 class App extends React.Component {
 
     state = {
+        userEmail: null,
+        isLoggedIn: false,
         currentTable: [],
         tables: [],
+    }
+
+    signin = (email) => {
+        this.setState({
+            userEmail: email,
+            isLoggedIn: true
+        });
     }
 
     setCurrentTable = (data) => {
@@ -62,8 +72,16 @@ class App extends React.Component {
     }
 
     render() {
+        if (!this.state.isLoggedIn) {
+            return (
+                <div className="container">
+                    <Login signin={this.signin} />
+                </div>
+            );
+        }
         return (
             <div className="container">
+                <h3>user: {this.state.userEmail}</h3>
                 <Uploader setCurrentTable={this.setCurrentTable} />
                 <Normalizer currentTable={this.state.currentTable} addTable={this.addTable} />
                 <MapIt tables={this.state.tables} googleMapsApiKey={config.google_maps_api_key} />
