@@ -5,10 +5,10 @@
     ```
     $ git clone https://github.com/ksuh90/neat-maps.git
     ```
-2. ```mv src/config-sample.js src/config.js```
+2. ```$ mv src/config-sample.js src/config.js```
 3. Add google maps api key in src/config.js 
-4. ```npm install```
-5. ```npm run start```
+4. ```$ npm install```
+5. ```$ npm run start```
 6. For testing, ```npm run test``` _(If running on OSX, make sure to have watchman installed "brew install watchman")_
 
 ## Specs
